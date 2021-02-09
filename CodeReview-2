@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int n;
+struct employeeStruct{
+	int id, currentsalary;
+	char strN[60];
+	char strDep[60];
+};
+struct departmentStruct {
+	int ID, inc;
+	char strName[60];
+	struct employeeStruct emp;
+};
+
+
+void increase_salary ( int *size1, int *size2, int *Id);
+int main()
+{
+	int n;
+	struct departmentStruct dep[n];
+	struct employeeStruct emp[n];
+	int numDep, numWorker;
+	int i;
+	int NewSalary;
+
+	printf("enter the number of departments: ");
+	scanf("%d", &numDep);
+	printf("enter the total number of workers: ");
+	scanf("%d", &numWorker);
+	
+	for(i=0;i<numDep;i++)
+	{
+			char strName[60];
+				printf("Enter %d. department id, name, increase for salary:  ", i+1);
+				scanf("%d %s %d", &dep[i].ID, &dep[i].strName, &dep[i].inc);
+	
+	    while(dep[i].inc>100||dep[i].inc<1)
+	    {
+	    	printf("please enter the increase between (1-100): ");
+	    	scanf(" %d", &dep[i].inc);
+		}
+	}
+	
+	for(i=0;i<numWorker;i++)
+	{
+	    printf("Enter %d. employee's ID, name, surname, current salary and department: ", i+1);
+	    scanf("%d ", &emp[i].id);
+	    getchar();
+	    gets(emp[i].strN);
+	    scanf("%d", &emp[i].currentsalary);
+	    getchar();
+	    gets(emp[i].strDep);
+	  
+	}
+	
+	int *currentS=&emp[n].currentsalary;
+	int *increase=&dep[n].inc;
+	int *size1, *size2, *Id;
+	increase_salary(&numWorker, &numDep, &emp[n].id);
+
+
+	return 0;
+}
+void increase_salary ( int *size1, int *size2, int *Id)
+{
+	int i, j, *currentS, *increase;
+	int n, c=0, k, numWorker;
+	char strN;
+	struct departmentStruct dep[n];
+	struct employeeStruct emp[n];
+	char strName[n];
+	char strDep[n];
+	int inc, currentsalary;
+	double newSalary;
+	printf("Employees who have salary increase:\n");
+	printf("----------------------------------------------------\n");
+    for(i=0;i<*size1;i++)
+	{
+		for(j=0;j<*size2;j++)
+		k=strcmp(dep[i].strName,emp[i].strDep);  
+
+	if(k==1)
+	{
+		c++;
+	}
+	else 
+	
+	{
+		newSalary=(*currentS)*(*increase/100);
+	printf("ID=%d   %s, new salary is %lf\n",*Id, emp[i].strN, newSalary);
+    }   
+
+
+	}
+    printf("----------------------------------------------------\n");
+	printf("%d employees do not have salary increase!\n", c);
+	
+}
