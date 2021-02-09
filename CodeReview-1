@@ -1,0 +1,167 @@
+# codeReview-1
+#include<stdio.h>
+#include<stdlib.h>
+double min(double *matrix1)
+{
+    int i,j;
+    double m = matrix1[0][0];
+
+    for(i=0; i<5; i++)
+	{
+        for(j=0; j<5; j++)
+		{
+            if(matrix1[i][j] < m)
+                m = matrix1[i][j];
+        }
+    }
+    return m;
+}
+double max(double *matrix1)
+{
+    int i,j;
+    double m = matrix1[0][0];
+
+    for(i=0; i<5; i++)
+	{
+        for(j=0; j<5; j++)
+		{
+            if(matrix1[i][j] > m)
+                m = matrix1[i][j];
+        }
+    }
+    return m;
+}
+doubleavg(double *matrix1)
+{
+    int i,j,n = 5;
+    double m = 0;
+
+    for(i=0; i<5; i++)
+	{
+        for(j=0; j<5; j++)
+		{
+                m += matrix1[i][j];
+        }
+    }
+    return m/(n * n);
+}
+void showNum(float **matrix1)
+{
+    int i,j;
+
+    for(i=0; i<5; i++)
+	{
+        for(j=0; j<5; j++)
+		{
+            printf("%.1lf",matrix1[i][j]);
+            printf("\t");
+        }
+        printf("\n");
+    }
+}
+void showSymbol(double *matrix1)
+{
+    int i,j,v;
+    double m = 0;
+
+    for(i=0; i<5; i++)
+	{
+        for(j=0; j<5; j++)
+		{
+            v = matrix1[i][j];
+            if(v%2 == 0)
+                printf("X");
+            else
+                printf("O");
+            printf("\t");
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+	int slct,i,j;
+	double z[5],b[5];
+	char ch= 'M',ch= 'm';
+	
+	printf("------Menu------");
+	printf("\n1-Addition\n");
+    printf("2-Substruction\n");   	
+	printf("3-Multiplication\n");
+	printf("4-Division\n");
+	printf("What is your selection?:");
+	scanf("%d",&slct);
+	
+	while(!(ch=='C'||ch=='c'||ch=='R'||ch=='r'))
+	{
+		printf("\nDo you want to create arrays in row-based or column-based?(C/R):");
+		scanf("%c",&ch);	
+	}
+	
+	 if(ch=='R'||ch=='r')
+	{
+        printf("\nEnter first array elements(5 x 5):");
+        for(i=0; i<5; i++)
+		{
+            for(j=0; j<5; j++)
+			{
+                scanf("%lf",&z[i][j]);
+            }
+        }
+   
+        printf("\nEnter second array elements(5 x 5):");
+        for(i=0; i<5; i++)
+		{
+            for(j=0; j<5; j++)
+			{
+                scanf("%lf",&b[i][j]);
+            }
+        }
+    }
+    
+    if(ch=='C'||ch=='c')
+	{
+        printf("Enter first array elements(5 x 5):");
+        for(j=0; j<5; j++)
+		{
+            for(i=0; i<5; i++)
+			{
+                scanf("%lf",&z[i][j]);
+            }
+        }
+   
+        printf("Enter second array elements(5 x 5):");
+        for(j=0; j<5; j++)
+		{
+            for(i=0; i<5; i++)
+			{
+                scanf("%lf",&b[i][j]);
+            }
+        }
+    }
+    
+     switch(slct)
+    {
+        case1: a = add(z,b); break;
+        case2: a = subtract(z,b); break;
+        case3: a = multiply(z,b); break;
+        case4: a = divide(z,b); break;
+    }
+    printf("\nThe max value of resultant array is %.1f\n", max(a));
+    printf("The min value of resultant array is %.1f\n", min(a));
+    printf("The average of resultant array is %.1f\n", avg(a));
+
+    printf("\n Do you want to see whole elements of resultant array as numbers?(Y/N):");
+    scanf(" %c",&show);
+  
+    if(show=='Y'||show=='y')
+    {
+    	showNum(a);
+	} 
+    else
+	{
+    	showSymbol(a);
+	}
+	system("PAUSE");
+	    return 0;	
+}
