@@ -3,24 +3,27 @@
 #include <string.h>
 int n;
 struct employeeStruct{
-	int id, currentsalary;
+	int id, currentsalary; //currentsalary could be double/float to be more accurate.
 	char strN[60];
 	char strDep[60];
+	//new salary information is missing
 };
 struct departmentStruct {
 	int ID, inc;
 	char strName[60];
-	struct employeeStruct emp;
+	struct employeeStruct emp; // this is not needed...
 };
 
 
-void increase_salary ( int *size1, int *size2, int *Id);
+void increase_salary ( int *size1, int *size2, int *Id); //four parameters missing
+//arrays of structures of department & employees are missing.
+//id is not needed....
 int main()
 {
 	int n;
-	struct departmentStruct dep[n];
+	struct departmentStruct dep[n]; 
 	struct employeeStruct emp[n];
-	int numDep, numWorker;
+	int numDep, numWorker; //namings should be dept_n & employee_n
 	int i;
 	int NewSalary;
 
@@ -31,11 +34,11 @@ int main()
 	
 	for(i=0;i<numDep;i++)
 	{
-			char strName[60];
+			char strName[60]; //not nedeed
 				printf("Enter %d. department id, name, increase for salary:  ", i+1);
 				scanf("%d %s %d", &dep[i].ID, &dep[i].strName, &dep[i].inc);
 	
-	    while(dep[i].inc>100||dep[i].inc<1)
+	    while(dep[i].inc>100||dep[i].inc<1) //0 and 100 should be included...
 	    {
 	    	printf("please enter the increase between (1-100): ");
 	    	scanf(" %d", &dep[i].inc);
@@ -46,34 +49,39 @@ int main()
 	{
 	    printf("Enter %d. employee's ID, name, surname, current salary and department: ", i+1);
 	    scanf("%d ", &emp[i].id);
-	    getchar();
+	    getchar(); //reads one character, how long is the id? id is integer...
 	    gets(emp[i].strN);
-	    scanf("%d", &emp[i].currentsalary);
+	    scanf("%d", &emp[i].currentsalary); 
 	    getchar();
 	    gets(emp[i].strDep);
 	  
 	}
 	
+	//the part below is problematic...
+	//this will only done for one employee
+	//whatever the n is at the moment...
 	int *currentS=&emp[n].currentsalary;
 	int *increase=&dep[n].inc;
 	int *size1, *size2, *Id;
 	increase_salary(&numWorker, &numDep, &emp[n].id);
 
-
+//outputs are missing
+//new salaries are not shown
+//name of employees' have not been changed
 	return 0;
 }
 void increase_salary ( int *size1, int *size2, int *Id)
 {
-	int i, j, *currentS, *increase;
-	int n, c=0, k, numWorker;
-	char strN;
-	struct departmentStruct dep[n];
-	struct employeeStruct emp[n];
-	char strName[n];
-	char strDep[n];
-	int inc, currentsalary;
+	int i, j, *currentS, *increase; //no need
+	int n, c=0, k, numWorker; //no need
+	char strN; //no need
+	struct departmentStruct dep[n]; //no need, this should be taken as parameter
+	struct employeeStruct emp[n]; //no need, this should be taken as parameter
+	char strName[n]; //no need
+	char strDep[n]; //no need
+	int inc, currentsalary; //no need
 	double newSalary;
-	printf("Employees who have salary increase:\n");
+	printf("Employees who have salary increase:\n"); //printing should be done in main
 	printf("----------------------------------------------------\n");
     for(i=0;i<*size1;i++)
 	{
@@ -82,18 +90,18 @@ void increase_salary ( int *size1, int *size2, int *Id)
 
 	if(k==1)
 	{
-		c++;
+		c++; //what is it? this should depend on increase value...
 	}
 	else 
 	
 	{
 		newSalary=(*currentS)*(*increase/100);
-	printf("ID=%d   %s, new salary is %lf\n",*Id, emp[i].strN, newSalary);
+	printf("ID=%d   %s, new salary is %lf\n",*Id, emp[i].strN, newSalary); //printing should be done in main and also, new salary value should be an employee structure value
     }   
 
 
 	}
-    printf("----------------------------------------------------\n");
-	printf("%d employees do not have salary increase!\n", c);
+    printf("----------------------------------------------------\n"); 
+	printf("%d employees do not have salary increase!\n", c); //should be done in main, c is not actually telling the number of employees who do not have ant increase
 	
 }

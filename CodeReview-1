@@ -45,7 +45,7 @@ doubleavg(double *matrix1)
     }
     return m/(n * n);
 }
-void showNum(float **matrix1)
+void showNum(float **matrix1) //why double pointer?
 {
     int i,j;
 
@@ -70,9 +70,9 @@ void showSymbol(double *matrix1)
 		{
             v = matrix1[i][j];
             if(v%2 == 0)
-                printf("X");
+                printf("X"); //even numbers should be 'O'
             else
-                printf("O");
+                printf("O"); //odd numbers should be 'X'
             printf("\t");
         }
         printf("\n");
@@ -81,8 +81,8 @@ void showSymbol(double *matrix1)
 int main()
 {
 	int slct,i,j;
-	double z[5],b[5];
-	char ch= 'M',ch= 'm';
+	double z[5],b[5]; //third array missing
+	char ch= 'M',ch= 'm'; //two same namings, two different values?
 	
 	printf("------Menu------");
 	printf("\n1-Addition\n");
@@ -140,13 +140,15 @@ int main()
         }
     }
     
-     switch(slct)
+     switch(slct) //what is 'a' here, 'a' is not defined?
     {
-        case1: a = add(z,b); break;
-        case2: a = subtract(z,b); break;
-        case3: a = multiply(z,b); break;
-        case4: a = divide(z,b); break;
+        case1: a = add(z,b); break; //case 1 
+        case2: a = subtract(z,b); break; //case 2
+        case3: a = multiply(z,b); break; //case 3
+        case4: a = divide(z,b); break; //case 4
     }
+    //the below part should be done another function called "otherfunctions" 
+    //whole are problematic....
     printf("\nThe max value of resultant array is %.1f\n", max(a));
     printf("The min value of resultant array is %.1f\n", min(a));
     printf("The average of resultant array is %.1f\n", avg(a));
